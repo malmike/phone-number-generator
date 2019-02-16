@@ -82,11 +82,11 @@ jobs:
           name: Building
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              npm run build-qa
+              yarn build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              npm run build-prod
+              yarn build-prod
             else
-              npm run build-dev
+              yarn build
             fi
 
       # Cache the dist folder for the deploy job
