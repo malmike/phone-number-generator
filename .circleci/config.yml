@@ -157,15 +157,21 @@ jobs:
               fi
             }
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+<<<<<<< HEAD
               createBucket phone-number-generator-dev
               aws s3 sync dist/phone-number-generator s3://phone-number-generator-dev/ --delete
             elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
               createBucket phone-number-generator-qa
               aws s3 sync dist/phone-number-generator s3://phone-number-generator-qa/ --delete
+=======
+              aws --region eu-west-2 s3 sync dist s3://phone-number-generator-dev/ --delete
+            elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
+              aws --region eu-west-2 s3 sync dist s3://phone-number-generator-qa/ --delete
+>>>>>>> Change project name for aws
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws --region eu-west-2 s3 sync dist s3://project/ --delete
+              aws --region eu-west-2 s3 sync dist s3://phone-number-generator/ --delete
             else
-              aws --region eu-west-2 s3 sync dist s3://project-dev/ --delete
+              aws --region eu-west-2 s3 sync dist s3://phone-number-generator-dev/ --delete
             fi
 
 workflows:
