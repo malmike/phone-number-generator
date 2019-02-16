@@ -23,8 +23,8 @@ jobs:
 
       # Log the current branch
       - run:
-        name: Show the current branch
-        command: echo ${CIRCLE_BRANCH}
+          name: Show the current branch
+          command: echo ${CIRCLE_BRANCH}
 
       # Restore local dependencies from cache
       - restore_cache:
@@ -52,30 +52,31 @@ jobs:
       # Lint the source code
       - run:
           name: Linting
-          command: npm run lint
+          command: yarn lint
 
       # run tests!
       - run:
           name: Testing
-          command: npm rum test-coverage
+          command: yarn test-coverage
 
       # Build project with different configurations based on
       # on the current branch
       - run:
           name: Building
           command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
               npm run build-prod
             else
               npm run build-dev
+            fi
 
       # Cache the dist folder for the deploy job
       - save_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-          path:
+          paths:
             - dist
+          key: v1-dependencies-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
 #   deploy:
 #     docker:
