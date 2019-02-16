@@ -107,7 +107,7 @@ jobs:
 
       # Restore cache from the build job which contains the
       # dist folder that needs to be deployed
-      - restore:
+      - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       # Install AWS CLI
@@ -130,6 +130,8 @@ jobs:
               aws --region eu-west-2 s3 sync dist s3://project-qa/ --delete
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
               aws --region eu-west-2 s3 sync dist s3://project/ --delete
+            else
+              aws --region eu-west-2 s3 sync dist s3://project-dev/ --delete
             fi
 
 workflows:
@@ -144,9 +146,9 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only:
-                - dev
-                - staging
-                - master
+          # filters:
+          #   branches:
+          #     only:
+          #       - dev
+          #       - staging
+          #       - master
