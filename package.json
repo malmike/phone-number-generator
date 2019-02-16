@@ -5,7 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-dev": "ng build --target=development --environment=dev",
+    "build-qa": "ng build --target=production --environment=qa",
+    "build-prod": "ng build --prod",
     "test": "ng test",
+    "test-coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
