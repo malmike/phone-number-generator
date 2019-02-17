@@ -134,7 +134,7 @@ jobs:
           command: |
             createBucket(){
               aws s3api list-buckets | grep -c $1
-              if [[ $? -ne 1 ]]; then
+              if [[ $? -ne 0 ]]; then
                   aws s3api create-bucket --bucket $1
                   aws s3api put-bucket-policy --bucket $1 --policy '{
                       "Version": "2012-10-17",
