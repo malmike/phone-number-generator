@@ -91,7 +91,7 @@ jobs:
       - save_cache:
           paths:
             - dist
-          key: v1-dependencies-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
 
   # The deploy job
