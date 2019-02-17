@@ -165,9 +165,6 @@ jobs:
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
               createBucket phone-number-generator
               aws s3 sync dist/phone-number-generator s3://phone-number-generator/ --delete
-            else
-              createBucket phone-number-generator-dev
-              aws s3 sync dist/phone-number-generator s3://phone-number-generator-dev/ --delete
             fi
 
 workflows:
@@ -182,9 +179,9 @@ workflows:
       - deploy:
           requires:
             - build
-          # filters:
-          #   branches:
-          #     only:
-          #       - dev
-          #       - staging
-          #       - master
+          filters:
+            branches:
+              only:
+                - dev
+                - staging
+                - master
