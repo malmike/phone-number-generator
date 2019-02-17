@@ -133,8 +133,8 @@ jobs:
           name: Deploy to S3
           command: |
             createBucket(){
-              aws s3 ls s3://$1 2>&1 | grep -c "NoSuchBucket"
-              if [[ $? -ne 1 ]]; then
+              aws s3api list-buckets | grep -c $1
+              if [[ $? -ne 0 ]]; then
                   aws s3api create-bucket --bucket $1
                   aws s3api put-bucket-policy --bucket $1 --policy '{
                       "Version": "2012-10-17",
