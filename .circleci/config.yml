@@ -133,13 +133,13 @@ jobs:
           name: Deploy to S3
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
-              aws --region us-east-2 s3 sync dist s3://phone-number-generator-dev/ --delete
+              aws s3 sync dist s3://phone-number-generator-dev/ --delete
             elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              aws --region us-east-2 s3 sync dist s3://phone-number-generator-qa/ --delete
+              aws s3 sync dist s3://phone-number-generator-qa/ --delete
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws --region us-east-2 s3 sync dist s3://phone-number-generator/ --delete
+              aws s3 sync dist s3://phone-number-generator/ --delete
             else
-              aws --region us-east-2 s3 sync dist s3://phone-number-generator-dev/ --delete
+              aws s3 sync dist s3://phone-number-generator-dev/ --delete
             fi
 
 workflows:
