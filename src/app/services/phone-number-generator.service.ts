@@ -12,7 +12,7 @@ export class PhoneNumberGeneratorService {
    * @param max maximum expected return value
    * @returns a string containing a random number between min and max
    */
-  generateRandomNumber(min: number, max: number) {
+  generateRandomNumber(min: number, max: number): string {
     min = Math.ceil(min);
     max = Math.floor(max);
     return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
@@ -22,7 +22,7 @@ export class PhoneNumberGeneratorService {
    * @param value string of numbers of 9 or less digits
    * @returns 10 digit number that start with zeros
    */
-  createRandomPhoneNumber(value: string) {
+  createRandomPhoneNumber(value: string): string {
     return '0'.repeat(10 - value.length).concat(value);
   }
 
@@ -32,7 +32,7 @@ export class PhoneNumberGeneratorService {
    * @param max the maximum number the phone number should have
    * @returns a set containing unique phone numbers
    */
-  createMultiplePhoneNumbers(limit: number, min: number, max: number) {
+  createMultiplePhoneNumbers(limit: number, min: number, max: number): Set<string> {
     const phoneNumbers = new Set([]);
     while (phoneNumbers.size < limit) {
       phoneNumbers.add(this.createRandomPhoneNumber(this.generateRandomNumber(min, max)));
