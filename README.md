@@ -30,3 +30,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Access the deployed application here:
+- [Dev](http://phone-number-generator-dev.s3-website-us-east-1.amazonaws.com/phone-number-generator/index.html)
+- [Staging](http://phone-number-generator-qa.s3-website-us-east-1.amazonaws.com/phone-number-generator/index.html)
+- [Production](http://phone-number-generator.s3-website-us-east-1.amazonaws.com/phone-number-generator/index.html)
