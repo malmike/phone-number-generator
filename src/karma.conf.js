@@ -23,7 +23,7 @@ module.exports = function (config) {
         statements: 80,
         lines: 80,
         branches: 0,
-        functions: 80
+        functions: 0
       }
     },
     reporters: ['progress', 'kjhtml'],
