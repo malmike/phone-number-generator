@@ -120,6 +120,14 @@ jobs:
           name: Setting signature Version for S3 Request Authentication
           command: aws configure set default.s3.signature_version s3v4
 
+      - run:
+          name: files in path
+          command: ls
+
+      - run:
+          name: files in dist
+          command: cd dist && ls
+
       # Deploy to the S3 bucket corresponding to the current branch
       - run:
           name: Deploy to S3
