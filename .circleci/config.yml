@@ -4,25 +4,6 @@
 #
 version: 2
 
-workflows:
-  version: 2
-  # The build and deployment workflow
-  build_and_deploy:
-    jobs:
-      - build
-
-      # The deploy job will only run on the filtered branches and
-      # require the build job to be successful before it starts
-      - deploy:
-          requires:
-            - build
-          # filters:
-          #   branches:
-          #     only:
-          #       - dev
-          #       - staging
-          #       - master
-
 jobs:
   build:
     docker:
@@ -152,40 +133,31 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
-            createBucket(){
-              aws s3api list-buckets | grep -c $1
-              if [[ $? -ne 0 ]]; then
-                  aws s3api create-bucket --bucket $1
-                  aws s3api put-bucket-policy --bucket $1 --policy '{
-                      "Version": "2012-10-17",
-                      "Statement": [{
-                          "Sid": "AddPerm",
-                          "Effect": "Allow",
-                          "Principal": "*",
-                          "Action": ["s3:GetObject"],
-                          "Resource": ["arn:aws:s3:::'"$1"'/*"]
-                          }]
-                      }'
-                  aws s3api put-bucket-website --bucket $1 --website-configuration '{
-                      "IndexDocument": {
-                          "Suffix": "index.html"
-                      },
-                      "ErrorDocument": {
-                          "Key": "error.html"
-                      }
-                  }'
-              fi
-            }
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
-              createBucket phone-number-generator-dev
               aws s3 sync dist/phone-number-generator s3://phone-number-generator-dev/ --delete
             elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              createBucket phone-number-generator-qa
               aws s3 sync dist/phone-number-generator s3://phone-number-generator-qa/ --delete
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              createBucket phone-number-generator
               aws s3 sync dist/phone-number-generator s3://phone-number-generator/ --delete
             else
-              createBucket phone-number-generator
               aws s3 sync dist s3://phone-number-generator/ --delete
             fi
+
+workflows:
+  version: 2
+  # The build and deployment workflow
+  build_and_deploy:
+    jobs:
+      - build
+
+      # The deploy job will only run on the filtered branches and
+      # require the build job to be successful before it starts
+      - deploy:
+          requires:
+            - build
+          # filters:
+          #   branches:
+          #     only:
+          #       - dev
+          #       - staging
+          #       - master
