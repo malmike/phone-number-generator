@@ -156,7 +156,6 @@ jobs:
                   }'
               fi
             }
-
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then
               createBucket phone-number-generator-dev
               aws s3 sync dist s3://phone-number-generator-dev/ --delete
