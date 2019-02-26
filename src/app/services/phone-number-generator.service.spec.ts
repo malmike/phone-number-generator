@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PhoneNumberGeneratorService } from './phone-number-generator.service';
 
-fdescribe('NumberGeneratorService', () => {
+describe('NumberGeneratorService', () => {
   let service: PhoneNumberGeneratorService;
   beforeEach( async () => TestBed.configureTestingModule({}));
   beforeEach( () => {

@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <form [formGroup]="createPhoneNumbersForm" *ngIf="active" (ngSubmit)="createPhoneNumbers()">
+      <div class="title">
+        <input class="number_of_phone_numbers form-propteries" formControlName="number_of_phone_numbers" type="number" required/>
+        <p class="error-message" *ngIf="formErrors.number_of_phone_numbers">{{formErrors.number_of_phone_numbers}}</p>
+      </div>
+      <button class="generate_phone_numbers form-propteries" type="submit" [disabled]="!createPhoneNumbersForm.valid">Generate Phone Numbers</button>
+    </form>
+  </div>
+  <div class="modifications" *ngIf="phoneNumbers">
+    <button class="ascending_sort button_changes" (click)="getAscendingPhoneNumbers()">Ascending Sort</button>
+    <button class="descending_sort button_changes" (click)="getDescendingPhoneNumbers()">Descending Sort</button>
+    <button class="maximum button_changes" (click)="getMaximumPhoneNumber()">Maxmium</button>
+    <button class="minimum button_changes" (click)="getMinimumPhoneNumber()">Minimum</button>
+    <button class="reset button_changes" (click)="getPhoneNumbersFromLocalStorage()">Reset Values</button>
+  </div>
+  <div class="phone-numbers" *ngIf="phoneNumbers">
+    <div class="grid-container" *ngIf="showPhoneNumbers">
+      <div class="grid-item" *ngFor="let phoneNumber of phoneNumbers">
+        <p> {{phoneNumber}} </p>
+      </div>
+    </div>
+    <div>
+      <p class="max-phone-number" *ngIf="getMax">Maximum Value: {{maximumPhoneNumber}}</p>
+      <p class="min-phone-number" *ngIf="getMin">Minimum Value: {{minimumPhoneNumber}}</p>
+    </div>
+  </div>
+</div>
