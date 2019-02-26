@@ -1,0 +1,71 @@
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  padding: 20px;
+  text-align: center;
+}
+
+p{
+  font-size: 30px;
+  text-align: center;
+}
+
+.number_of_phone_numbers{
+  text-align: center;
+}
+
+.form-propteries{
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.title{
+  width: 40%;
+  margin-bottom: 1em;
+}
+
+.error-message{
+  font-size: 20px;
+  color: red;
+  margin-top: 0px;
+}
+
+.generate_phone_numbers{
+  width: 40%;
+  background-color: rgb(118, 194, 3);
+  margin-bottom: 1em;
+}
+
+.generate_phone_numbers:hover{
+  background-color: rgb(116, 196, 224);
+}
+
+.generate_phone_numbers:disabled{
+  background-color: rgba(204, 204, 204, 0.918)
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modifications{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.button_changes{
+  margin: 0.5em;
+  width: 20em;
+  height: 3em;
+  font-size: 1em;
+}
