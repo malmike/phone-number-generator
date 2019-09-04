@@ -20,8 +20,6 @@ import { SortPhoneNumbersService } from './services/sort-phone-numbers.service';
     ReactiveFormsModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
     PhoneNumberGeneratorService,
     SortPhoneNumbersService
   ],
