@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { PhoneNumberGeneratorComponent } from './phone-number-generator/phone-number-generator.component';
@@ -20,6 +20,8 @@ import { SortPhoneNumbersService } from './services/sort-phone-numbers.service';
     ReactiveFormsModule
   ],
   providers: [
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     PhoneNumberGeneratorService,
     SortPhoneNumbersService
   ],
